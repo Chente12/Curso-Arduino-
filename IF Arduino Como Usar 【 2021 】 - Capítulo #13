@@ -1,0 +1,52 @@
+/*digitalWrite(pinDigital, LOW);
+digitalWrite(pinDigital2, LOW);
+digitalWrite(pinDigital3, LOW);
+
+"En cada repetición del loop(), apaga primero los tres LEDs."
+
+Después, Arduino evalúa los if y solo enciende el LED que corresponde al voltaje actual.*/
+
+
+int pinAnalogico=A0;
+float calculoAnalogico;
+float voltajeCalculado;
+int pinDigital=9;
+int pinDigital2=8;
+int pinDigital3=7;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinAnalogico,INPUT);
+  pinMode(pinDigital,OUTPUT);
+  pinMode(pinDigital2,OUTPUT);
+  pinMode(pinDigital3,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  digitalWrite(pinDigital, LOW);
+  digitalWrite(pinDigital2, LOW);
+  digitalWrite(pinDigital3, LOW);
+
+  calculoAnalogico=analogRead(pinAnalogico);
+  voltajeCalculado=(5.*calculoAnalogico)/1023.;
+  if (voltajeCalculado>=0 && voltajeCalculado<=3){
+    digitalWrite(pinDigital,HIGH);
+  }
+   if (voltajeCalculado>=3.1 && voltajeCalculado<=4){
+    digitalWrite(pinDigital2,HIGH);
+    digitalWrite(pinDigital,LOW);
+  } 
+   if (voltajeCalculado>=4.1 && voltajeCalculado<=5){
+    digitalWrite(pinDigital3,HIGH);
+    digitalWrite(pinDigital2,LOW);
+    digitalWrite(pinDigital,LOW);
+  } 
+  Serial.println(voltajeCalculado);
+  
+
+
+}
