@@ -4,7 +4,12 @@ digitalWrite(pinDigital3, LOW);
 
 "En cada repetición del loop(), apaga primero los tres LEDs."
 
-Después, Arduino evalúa los if y solo enciende el LED que corresponde al voltaje actual.*/
+Después, Arduino evalúa los if y solo enciende el LED que corresponde al voltaje actual.
+
+el loop() no empieza a repetirse solamente cuando disminuyes el potenciómetro.
+
+En Arduino, después de ejecutar setup(), el loop() se repite constantemente y muy rápido
+*/
 
 
 int pinAnalogico=A0;
