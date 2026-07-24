@@ -1,0 +1,25 @@
+/*Valores de 0 a 255 (Salida PWM - AnalogWrite)
+
+Valores de 0 a 1023 (Entrada Analógica - AnalogRead)*/
+
+int pinAnalogico = A0;
+int pinPWM = 6;
+int retardo = 500;
+int calculoAnalogico;
+int conversion;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinAnalogico,INPUT);
+  pinMode(pinPWM,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  calculoAnalogico=analogRead(pinAnalogico);
+  conversion=map(calculoAnalogico,0,1023,0,255);
+  Serial.println(conversion);
+  analogWrite(pinPWM,conversion);
+  delay(retardo);
+}
